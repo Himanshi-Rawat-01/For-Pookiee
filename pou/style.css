@@ -1,0 +1,388 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#fff5f7 0%,#ffe0ec 25%,#ffd1e3 50%,#ffb3d9 75%,#fff5f7 100%);
+  background-size:300% 300%;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  color:#5a4a5a;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:none;
+  pointer-events:none;
+  z-index:1;
+}
+.particles{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.particle{
+  position:absolute;
+  background:rgba(255,255,255,0.5);
+  border-radius:50%;
+  animation:float linear infinite;
+}
+.falling-heart{
+  position:fixed;
+  font-size:2.8rem;
+  pointer-events:none;
+  z-index:1;
+  opacity:0.6;
+  animation:fall linear infinite;
+  text-shadow:0 2px 8px rgba(255,20,147,0.4);
+  color:#ff1493;
+  font-weight:bold;
+}
+.card{
+  background:rgba(255,255,255,0.92);
+  width:90%;
+  max-width:500px;
+  padding:50px;
+  border-radius:25px;
+  box-shadow:0 20px 50px rgba(192,132,156,0.2),
+              0 0 40px rgba(236,205,220,0.4);
+  text-align:center;
+  animation:slideUp 0.8s ease-out;
+  position:relative;
+  z-index:2;
+  border:1.5px solid rgba(236,205,220,0.5);
+  backdrop-filter:blur(10px);
+  transition:box-shadow 0.3s ease;
+}
+.card:hover{
+  box-shadow:0 25px 60px rgba(192,132,156,0.35),
+              0 0 50px rgba(236,205,220,0.5);
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(45deg,transparent,rgba(255,255,255,0.05),transparent);
+  animation:none;
+}
+h1{
+  font-family:'Pacifico',cursive;
+  color:#c4628d;
+  font-size:2.3rem;
+  margin-bottom:20px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  animation:floatTitle 3s ease-in-out infinite;
+}
+.gif-center{
+  width:160px;
+  height:160px;
+  margin:25px 0;
+  border-radius:15px;
+  box-shadow:0 8px 25px rgba(192,132,156,0.25);
+  border:2px solid rgba(236,205,220,0.4);
+  transition:transform 0.3s ease;
+}
+.gif-center:hover{
+  transform:scale(1.05);
+}
+p{
+  font-size:0.95rem;
+  line-height:1.9;
+  margin:16px 0;
+  color:#6b5a6f;
+  animation:fadeInText 1s ease-out;
+  font-weight:300;
+}
+.heart{
+  font-size:3rem;
+  animation:beat 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  margin:20px 0;
+  display:inline-block;
+}
+button{
+  background:linear-gradient(135deg,#ff5d8f,#ff3b78);
+  color:#fff;
+  border:none;
+  padding:14px 28px;
+  border-radius:50px;
+  font-size:1rem;
+  cursor:pointer;
+  margin-top:20px;
+  transition:all 0.3s ease;
+  font-weight:600;
+  box-shadow:0 8px 25px rgba(255,93,143,0.4);
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+button::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  border-radius:50%;
+  background:rgba(255,255,255,0.3);
+  transform:translate(-50%,-50%);
+  transition:width 0.6s,height 0.6s;
+  z-index:-1;
+}
+button:hover::before{
+  width:300px;
+  height:300px;
+}
+button:hover{
+  transform:translateY(-3px) scale(1.08);
+  box-shadow:0 15px 40px rgba(255,93,143,0.6);
+}
+button:active{
+  transform:translateY(-1px) scale(1.05);
+}
+.hidden{
+  display:none;
+  margin-top:25px;
+  font-size:0.95rem;
+  color:#6b5a6f;
+}
+.hidden.show{
+  display:block;
+  animation:revealMessage 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+footer{
+  margin-top:20px;
+  font-size:0.8rem;
+  color:#888;
+}
+@keyframes fall{
+  to{
+    transform:translateY(100vh) rotateZ(360deg);
+    opacity:0;
+  }
+}
+@keyframes beat{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.3)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.2)}
+  100%{transform:scale(1)}
+}
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+@keyframes glow{
+  0%,100%{box-shadow:0 25px 60px rgba(0,0,0,0.2),0 0 60px rgba(255,107,157,0.3)}
+  50%{box-shadow:0 25px 60px rgba(0,0,0,0.2),0 0 80px rgba(255,107,157,0.5)}
+}
+@keyframes titleGlow{
+  0%,100%{text-shadow:0 0 10px rgba(255,93,143,0.3)}
+  50%{text-shadow:0 0 20px rgba(255,93,143,0.6)}
+}
+@keyframes shine{
+  0%{transform:translate(0,0) rotate(0deg)}
+  100%{transform:translate(30px,30px) rotate(0deg)}
+}
+@keyframes floatTitle{
+  0%,100%{transform:translateY(0px)}
+  50%{transform:translateY(-12px)}
+}
+@keyframes revealMessage{
+  0%{opacity:0;transform:translateY(-20px) scale(0.95)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes confetti{
+  0%{transform:translate(0,0) rotate(0deg);opacity:1}
+  100%{transform:translate(var(--tx),var(--ty)) rotate(720deg);opacity:0}
+}
+@keyframes float{
+  0%{opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{opacity:0}
+}
+@keyframes fadeInText{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+.card{
+  background:rgba(255,255,255,0.95);
+  width:90%;
+  max-width:500px;
+  padding:40px;
+  border-radius:30px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.2),
+              0 0 60px rgba(255,107,157,0.3);
+  text-align:center;
+  animation:slideUp 0.8s ease-out, glow 3s ease-in-out infinite;
+  position:relative;
+  z-index:2;
+  border:2px solid rgba(255,255,255,0.3);
+  backdrop-filter:blur(10px);
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
+  animation:shine 3s infinite;
+}
+h1{
+  font-family:'Pacifico',cursive;
+  background:linear-gradient(135deg,#ff5d8f,#c44569);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-size:2.5rem;
+  margin-bottom:10px;
+  animation:titleGlow 2s ease-in-out infinite;
+}
+p{
+  font-size:1rem;
+  line-height:1.8;
+  margin:15px 0;
+  color:#555;
+  animation:fadeInText 1s ease-out;
+}
+.heart{
+  font-size:3rem;
+  animation:beat 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  margin:20px 0;
+  display:inline-block;
+}
+button{
+  background:linear-gradient(135deg,#ff5d8f,#ff3b78);
+  color:#fff;
+  border:none;
+  padding:14px 28px;
+  border-radius:50px;
+  font-size:1rem;
+  cursor:pointer;
+  margin-top:20px;
+  transition:all 0.3s ease;
+  font-weight:600;
+  box-shadow:0 8px 25px rgba(255,93,143,0.4);
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+button::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  border-radius:50%;
+  background:rgba(255,255,255,0.3);
+  transform:translate(-50%,-50%);
+  transition:width 0.6s,height 0.6s;
+  z-index:-1;
+}
+button:hover::before{
+  width:300px;
+  height:300px;
+}
+button:hover{
+  transform:translateY(-3px) scale(1.08);
+  box-shadow:0 15px 40px rgba(255,93,143,0.6);
+}
+button:active{
+  transform:translateY(-1px) scale(1.05);
+}
+.hidden{
+  display:none;
+  margin-top:25px;
+  font-size:0.95rem;
+  color:#555;
+  animation:slideDown 0.6s ease-out forwards;
+}
+.hidden.show{
+  display:block;
+}
+footer{
+  margin-top:20px;
+  font-size:0.8rem;
+  color:#888;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes beat{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.3)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.2)}
+  100%{transform:scale(1)}
+}
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+@keyframes slideDown{
+  from{
+    opacity:0;
+    transform:translateY(-20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+@keyframes glow{
+  0%,100%{box-shadow:0 25px 60px rgba(0,0,0,0.2),0 0 60px rgba(255,107,157,0.3)}
+  50%{box-shadow:0 25px 60px rgba(0,0,0,0.2),0 0 80px rgba(255,107,157,0.5)}
+}
+@keyframes titleGlow{
+  0%,100%{text-shadow:0 0 10px rgba(255,93,143,0.3)}
+  50%{text-shadow:0 0 20px rgba(255,93,143,0.6)}
+}
+@keyframes shine{
+  0%{transform:translate(0,0) rotate(0deg)}
+  100%{transform:translate(30px,30px) rotate(0deg)}
+}
+@keyframes float{
+  0%{opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{opacity:0}
+}
+@keyframes fadeInText{
+  from{opacity:0}
+  to{opacity:1}
+}

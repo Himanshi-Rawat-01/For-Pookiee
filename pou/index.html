@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="card">
+    <h1>For my little little Pookieee!!!❤️</h1>
+    <img src="https://i.pinimg.com/originals/f5/e0/a5/f5e0a5e748b2dc73bdec6ba0aca0a083.gif" alt="Love" class="gif-center">
+    <p>
+      I know you’ve been working really hard lately, and I just want you to know
+      how proud I am of you. I see every effort, every late night, every busyy ass
+      moment where you keep going even when it’s tough.
+    </p>
+    <p>
+      You don’t have to carry everything alone. I’m right here—always cheering
+      for you,Like MEOWW MEOWWW!!!! always believing in you, and loving you more than words can say.
+      Remember Bubuuuuu!!! You've got chottuu si bachiii!!! A Kitty in your life to always make you smile. 🐱💕 
+      To always tease you and love you unconditionally. You've got meeeeeee!!!!!!! A Billoooo to handle!!! hehehe!!!  
+      <center>Ummaaaaaaaaahhhhhhhhhhh!!!!!!!!!💋</center> 
+    </p>
+    <button onclick="showMessage()">Tap for something extra 💌</button>
+    <div id="extra" class="hidden">
+      <p>
+        Come to me Bubuuuuuuuu!!!!!!! take a deep breath. You’re doing better than you think.
+        I’m so lucky to have you, and I’ll stand by you through every high and low. I have faith in you pookieee!!!
+        Remember Pookieee, you are stronger than any challenge that comes your way.
+        I believe in you with all my heart. I trust YOU!!!❤️
+      </p>
+      <p><strong>I love you. Always.</strong></p>
+    </div>
+    <footer> For my Cutieee patutiee from his Betuuu!!!✨</footer>
+  </div>
+
+  <script>
+    function showMessage(){
+      const extra = document.getElementById('extra');
+      extra.classList.add('show');
+      createHeartParticles();
+      createConfetti();
+    }
+    
+    function createConfetti(){
+      const confettiCount = 30;
+      for(let i = 0; i < confettiCount; i++){
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = confetti.style.width;
+        confetti.style.backgroundColor = ['#ff1493','#ff69b4','#ffb3d9','#ffc0cb'][Math.floor(Math.random() * 4)];
+        confetti.style.borderRadius = '50%';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '999';
+        
+        const card = document.querySelector('.card');
+        const rect = card.getBoundingClientRect();
+        confetti.style.left = (rect.left + rect.width/2) + 'px';
+        confetti.style.top = (rect.top + rect.height/2) + 'px';
+        
+        const angle = (i / confettiCount) * Math.PI * 2;
+        const velocity = Math.random() * 8 + 5;
+        const tx = Math.cos(angle) * velocity * 100;
+        const ty = Math.sin(angle) * velocity * 100 - 50;
+        
+        confetti.style.setProperty('--tx', tx + 'px');
+        confetti.style.setProperty('--ty', ty + 'px');
+        confetti.style.animation = `confetti ${1.5 + Math.random() * 1}s ease-out forwards`;
+        
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), 2500);
+      }
+    }
+    
+    function createFallingHearts(){
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'falling-heart';
+        heart.textContent = '❤';
+        
+        const randomLeft = Math.random() * 100;
+        const randomDuration = Math.random() * 4 + 5;
+        const randomDelay = Math.random() * 2;
+        
+        heart.style.left = randomLeft + '%';
+        heart.style.top = '-50px';
+        heart.style.animation = `fall ${randomDuration}s linear ${randomDelay}s forwards`;
+        
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, (randomDuration + randomDelay) * 1000);
+      }, 300);
+    }
+    
+    function createHeartParticles(){
+      const card = document.querySelector('.card');
+      for(let i = 0; i < 8; i++){
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.style.position = 'fixed';
+        heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '999';
+        
+        const rect = card.getBoundingClientRect();
+        heart.style.left = (rect.left + rect.width/2) + 'px';
+        heart.style.top = (rect.top + rect.height/2) + 'px';
+        
+        const angle = (i / 8) * Math.PI * 2;
+        const velocity = 5;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity - 3;
+        
+        document.body.appendChild(heart);
+        
+        let x = rect.left + rect.width/2;
+        let y = rect.top + rect.height/2;
+        let opacity = 1;
+        
+        const animate = () => {
+          x += vx;
+          y += vy;
+          opacity -= 0.02;
+          
+          heart.style.left = x + 'px';
+          heart.style.top = y + 'px';
+          heart.style.opacity = opacity;
+          
+          if(opacity > 0){
+            requestAnimationFrame(animate);
+          } else {
+            heart.remove();
+          }
+        };
+        
+        animate();
+      }
+    }
+    
+    createFallingHearts();
+  </script>
+</body>
+</html>
